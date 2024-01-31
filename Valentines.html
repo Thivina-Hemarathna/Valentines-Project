@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Valentine's Day Surprise</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #000;
+            color: #fff;
+            font-family: 'Arial', sans-serif;
+            animation: fadeIn 5s ease-in-out forwards;
+        }
+        
+        #topLeftImage {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width:70%; /* Set the width as a percentage of the viewport width */
+            height: auto; /* Maintain the aspect ratio */
+        }
+        
+        #bottomRightImage {
+            position: fixed;
+            bottom: 0;
+            right: 0;
+            width: 50%; /* Set the width as a percentage of the viewport width */
+            height: auto; /* Maintain the aspect ratio */
+        }
+        
+        #flower-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            opacity: 0;
+            animation: fadeIn 3s ease-in-out forwards;
+            text-align: center;
+        }
+
+        #flower {
+            width: 0;
+            height: 0;
+            animation: growFlower 3s ease-in-out forwards;
+            margin-bottom: 0px;
+        }
+
+        #message {
+            font-size: 1.5em;
+            margin-top: 20px;
+        }
+
+        .btn-container {
+            display: flex;
+            justify-content: space-between;
+            width: 50%; /* Adjust as needed */
+        }
+
+        .btn {
+            margin: 5px;
+            padding: 10px 20px;
+            font-size: 1em;
+            cursor: pointer;
+            border: none;
+            border-radius: 5px;
+            color: #fff;
+            font-weight: bold;
+            transition: background-color 0.3s;
+        }
+
+        #yes-btn {
+            background-color: #4CAF50; /* Green */
+        }
+        #yes-btn:hover{
+            background-color: greenyellow;
+        }
+        #no-btn {
+            background-color: #f44336; /* Red */
+        }
+
+        #no-btn:hover {
+            background-color: #ff6659; /* Lighter red on hover */
+        }
+
+        #congratulations {
+            display: none;
+            justify-content: center;
+            align-items: center;
+            position: fixed;
+            top: 0%;
+            left: 50%;
+            transform: translate(-50%, 0%);
+            font-size: 3em;
+            color: #fff;
+            font-family:'Courier New', Courier, monospace;
+            animation: fadeIn 3s ease-in-out forwards;
+        }
+
+        @keyframes growFlower {
+            0% {
+                width: 0;
+                height: 0;
+            }
+            100% {
+                width: 70%;
+                height: auto;
+            }
+        }
+
+        @keyframes fadeIn {
+            0% {
+                opacity: 0;
+            }
+            100% {
+                opacity: 1;
+            }
+        }
+
+        @keyframes fadeOut {
+            0% {
+                opacity: 1;
+            }
+            100% {
+                opacity: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+<img id="bottomRightImage" src="https://i.pinimg.com/originals/3d/56/0e/3d560e3191675e63d5e1a170f3b2cc02.jpg" alt="Bottom Right Image">
+
+<img id="topLeftImage" src="https://yesofcorsa.com/wp-content/uploads/2017/08/Black-Flowers-Wallpaper-1080p.jpg" alt="Top Left Image">
+<div id="flower-container">
+    <img id="flower" src="https://cache.lovethispic.com/uploaded_images/337692-Animated-Flower.gif" alt="Blooming Flower">
+    <div id="message">Will you be my Valentine?</div>
+    <div class="btn-container">
+        <button class="btn" id="yes-btn" onclick="displayMessage()">Yes</button>
+        <button class="btn" id="no-btn" onclick="moveNoButton()">No</button>
+    </div>
+    <div id="congratulations">Congratulations!</div>
+</div>
+
+<script>
+    function displayMessage() {
+        const flowerContainer = document.getElementById('flower-container');
+        const message = document.getElementById('message');
+        const congratulations = document.getElementById('congratulations');
+
+        congratulations.style.display = 'flex';
+        congratulations.style.animation = 'fadeOut 4s ease-in-out forwards';
+        message.innerHTML = `Thanks for being my valentine!:)`;
+        message.style.fontSize = '1.3em';
+        message.style.marginTop = '30px';
+    }
+
+    function moveNoButton() {
+        const noButton = document.getElementById('no-btn');
+        const newPositionX = Math.floor(Math.random() * window.innerWidth);
+        const newPositionY = Math.floor(Math.random() * window.innerHeight);
+
+        noButton.style.position = 'absolute';
+        noButton.style.left = `${newPositionX}px`;
+        noButton.style.top = `${newPositionY}px`;
+    }
+</script>
+
+</body>
+</html>
